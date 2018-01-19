@@ -16,7 +16,8 @@ router.get('/items/:id', async (req, res, next) => {
   res.render('single', {item: item});
 });
 
-router.get('/items/:id/delete', async (req, res, next) => {
+router.post('/items/:id/delete', async (req, res, next) => {
+  console.log("deleteing item...")
   const item = await Item.findById(req.params.id);
   await item.remove();
   res.redirect('/'); 

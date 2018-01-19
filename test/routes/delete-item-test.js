@@ -12,12 +12,12 @@ describe('Server path: /items/:id/delete', () => {
 
     afterEach(diconnectDatabase);
 
-    describe('GET', () => {
+    describe('POST', () => {
         it('deletes item from database', async () => {
             const seededItem = await seedItemToDatabase(); // setup
 
             const response = await request(app)
-                .get('/items/' + seededItem.id + "/delete"); // exercise
+                .post('/items/' + seededItem.id + "/delete"); // exercise
 
             const allItems = await Item.find({});
             assert.equal(allItems.length, 0); // verify
